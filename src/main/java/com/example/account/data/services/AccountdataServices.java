@@ -3,7 +3,7 @@
 import com.example.account.data.entities.Accountdata;
 import com.example.account.data.entities.Departement;
 import com.example.account.data.handler.renspon.AccountdataRespon;
-import com.example.account.data.handler.renspon.DepartementDto;
+import com.example.account.data.handler.request.DepartementDto;
 import com.example.account.data.handler.request.CreateAccountdataDto;
 import com.example.account.data.repository.Accountdatarepository;
 import com.example.account.data.repository.Departementrepository;
@@ -19,7 +19,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
- @Service
+    @Service //TODO : ANOTASI SERVICE INI PENTING MENGHUNGKAN REPO KE CLASS SERVICE WAJIB DI GUNAKAN SAAT PEMANGGILAN CLASS SERVICE KE REPO...
     public class AccountdataServices {
      @Autowired
      private Accountdatarepository accountdatarepo;
@@ -37,8 +37,6 @@ import java.util.Optional;
          accountdata.setPhoneNumber(createAccountdataDTO.getPhoneNumber());
          accountdata.setCreatedDate(new Date());
          accountdata.setUpdatedDate(new Date());
-         Optional<Departement> departement = departementrepo.findById(createAccountdataDTO.getDepartementid());
-         accountdata.setDepartement(departement.get());
          accountdatarepo.save(accountdata);
          return "account data sudah berhasih di tambahkan";
 
@@ -54,6 +52,8 @@ import java.util.Optional;
          // TODO ; PERBEDAA EAGER DAN LAZY (WAJIB DIKETAHUI...)
          // TODO : EGER METODE INI MENGANGAMBIL SEMUA LIST SEMUA DATA YANG ADA DI DBMS KITA.
          // TODO : METODE LAZY HARUS MEMAKAI BISNISS LOGIC UNTUK GET DATA YANG INGIN DI PAKAI, YAITU MEMAKAI SISTEM LOOPING;
+
+        //TODO : SERVICE CREATED DATA KE REST API MENGGUNAKAN BODY
          List<AccountdataRespon> response = new ArrayList<>();
          for (Accountdata accountDataSet : page) {
              AccountdataRespon accountdataRespon = new AccountdataRespon();
@@ -90,6 +90,8 @@ import java.util.Optional;
          accountdatarepo.save(accountdata.get());
          return "Account Data Update";
      }
+
+     //TODO : SERVICE BUAT DELETE
      @Transactional
      public String delateAccountData(CreateAccountdataDto createAccountDataDto, int accountdataId)
          throws Exception {

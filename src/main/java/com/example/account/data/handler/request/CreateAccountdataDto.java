@@ -1,7 +1,7 @@
 package com.example.account.data.handler.request;
 
 import lombok.Data;
-
+/// TODO ADRIBUT ACCOUNDATA
 @Data
 public class CreateAccountdataDto {
     private String name;

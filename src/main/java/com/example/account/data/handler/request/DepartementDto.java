@@ -1,4 +1,4 @@
-package com.example.account.data.handler.renspon;
+package com.example.account.data.handler.request;
 
 import lombok.Data;
 

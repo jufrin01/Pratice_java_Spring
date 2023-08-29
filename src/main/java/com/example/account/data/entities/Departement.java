@@ -10,8 +10,6 @@ import javax.persistence.*;
 public class Departement extends  BaseModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column
     private int departementid;
-    @Column
     private String departementName;
 }
